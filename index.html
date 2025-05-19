@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urban Green Haven - Transform Your Rooftop into a Lush Paradise</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        },
+                        secondary: {
+                            100: '#f7fafc',
+                            200: '#edf2f7',
+                            300: '#e2e8f0',
+                            400: '#cbd5e0',
+                            500: '#a0aec0',
+                            600: '#718096',
+                            700: '#4a5568',
+                            800: '#2d3748',
+                            900: '#1a202c',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .hero-pattern {
+            background-color: #f0fdf4;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2322c55e' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-leaf text-primary-600 text-2xl mr-2"></i>
+                        <span class="font-bold text-xl text-primary-700">Urban Green Haven</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html"
+                        class="text-primary-700 font-medium hover:text-primary-500 transition-colors">Home</a>
+                    <a href="shop.html" class="text-gray-600 hover:text-primary-500 transition-colors">Shop</a>
+                    <a href="blog.html" class="text-gray-600 hover:text-primary-500 transition-colors">Blog</a>
+                    <a href="qa.html" class="text-gray-600 hover:text-primary-500 transition-colors">Q&A</a>
+                    <a href="consultation.html"
+                        class="text-gray-600 hover:text-primary-500 transition-colors">Consultation</a>
+                    <a href="cart.html" class="text-gray-600 hover:text-primary-500 transition-colors relative">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span
+                            class="absolute -top-2 -right-2 bg-primary-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs"
+                            id="cart-count">0</span>
+                    </a>
+                    <a href="login.html" class="text-gray-600 hover:text-primary-500 transition-colors">
+                        <i class="fas fa-user"></i>
+                    </a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-600 hover:text-primary-500 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html" class="block px-3 py-2 text-primary-700 font-medium">Home</a>
+                <a href="shop.html" class="block px-3 py-2 text-gray-600 hover:text-primary-500">Shop</a>
+                <a href="blog.html" class="block px-3 py-2 text-gray-600 hover:text-primary-500">Blog</a>
+                <a href="qa.html" class="block px-3 py-2 text-gray-600 hover:text-primary-500">Q&A</a>
+                <a href="consultation.html"
+                    class="block px-3 py-2 text-gray-600 hover:text-primary-500">Consultation</a>
+                <a href="cart.html" class="block px-3 py-2 text-gray-600 hover:text-primary-500">Cart</a>
+                <a href="login.html" class="block px-3 py-2 text-gray-600 hover:text-primary-500">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Add padding to body to account for fixed header -->
+    <div class="pt-16">
+        <!-- Hero Section -->
+        <section class="bg-gradient-to-b from-primary-50 to-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/2 mb-10 md:mb-0">
+                        <h1 class="text-4xl md:text-5xl font-bold text-gray-800 leading-tight mb-4">
+                            Transform Your Rooftop into a <span class="text-primary-600">Lush Paradise</span>
+                        </h1>
+                        <p class="text-lg text-gray-600 mb-8">
+                            Create your own urban oasis with our expert guidance, premium plants, and gardening essentials.
+                            Breathe life into your concrete jungle!
+                        </p>
+                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                            <a href="shop.html"
+                                class="bg-primary-600 hover:bg-primary-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-300 text-center">
+                                Shop Now
+                            </a>
+                            <a href="consultation.html"
+                                class="bg-white hover:bg-gray-100 text-primary-600 font-medium py-3 px-6 rounded-lg border border-primary-600 transition-colors duration-300 text-center">
+                                Book Consultation
+                            </a>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2">
+                        <img src="home.jpeg" alt="Rooftop Garden" class="w-full h-64 object-cover">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">Why Choose Urban Green Haven?</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                        We provide everything you need to create and maintain a thriving rooftop garden in the urban
+                        environment.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div
+                        class="bg-primary-50 p-8 rounded-lg transition-transform duration-300 hover:transform hover:scale-105">
+                        <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mb-6">
+                            <i class="fas fa-seedling text-primary-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Premium Plants</h3>
+                        <p class="text-gray-600">
+                            Carefully selected plants that thrive in rooftop environments, including vegetables, fruits,
+                            flowers, and ornamentals.
+                        </p>
+                    </div>
+
+                    <div
+                        class="bg-primary-50 p-8 rounded-lg transition-transform duration-300 hover:transform hover:scale-105">
+                        <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mb-6">
+                            <i class="fas fa-hands-helping text-primary-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Expert Consultation</h3>
+                        <p class="text-gray-600">
+                            Get personalized advice from our gardening experts through online or onsite consultations.
+                        </p>
+                    </div>
+
+                    <div
+                        class="bg-primary-50 p-8 rounded-lg transition-transform duration-300 hover:transform hover:scale-105">
+                        <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mb-6">
+                            <i class="fas fa-tools text-primary-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Quality Tools</h3>
+                        <p class="text-gray-600">
+                            Professional-grade gardening tools and supplies specifically designed for rooftop gardening.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Products -->
+        <section class="py-16 bg-primary-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800">Featured Products</h2>
+                    <a href="shop.html" class="text-primary-600 hover:text-primary-700 font-medium flex items-center">
+                        View All <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Product 1 -->
+                    <div
+                        class="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:transform hover:scale-105">
+                        <img src="IDP-2-main/Untitled.jpeg" alt="Tomato Plant" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-2">Cherry Tomato Plant</h3>
+                            <p class="text-gray-600 text-sm mb-4">Perfect for rooftop containers and produces sweet,
+                                bite-sized tomatoes.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-primary-600 font-bold">৳350 BDT</span>
+                                <button
+                                    class="add-to-cart bg-primary-100 hover:bg-primary-200 text-primary-700 px-3 py-1 rounded-full transition-colors"
+                                    data-id="1" data-name="Cherry Tomato Plant" data-price="350">
+                                    <i class="fas fa-cart-plus"></i> Add
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 2 -->
+                    <div
+                        class="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:transform hover:scale-105">
+                        <img src="IDP-2-main/k.jpeg" alt="Herb Garden Kit" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-2">Herb Garden Kit</h3>
+                            <p class="text-gray-600 text-sm mb-4">Grow your own basil, mint, and cilantro with this complete
+                                starter kit.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-primary-600 font-bold">৳650 BDT</span>
+                                <button
+                                    class="add-to-cart bg-primary-100 hover:bg-primary-200 text-primary-700 px-3 py-1 rounded-full transition-colors"
+                                    data-id="2" data-name="Herb Garden Kit" data-price="650">
+                                    <i class="fas fa-cart-plus"></i> Add
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 3 -->
+                    <div
+                        class="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:transform hover:scale-105">
+                        <img src="IDP-2-main/t.jpeg" alt="Gardening Tool Set" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-2">Gardening Tool Set</h3>
+                            <p class="text-gray-600 text-sm mb-4">Essential tools for rooftop gardening in a convenient
+                                carrying case.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-primary-600 font-bold">৳1200 BDT</span>
+                                <button
+                                    class="add-to-cart bg-primary-100 hover:bg-primary-200 text-primary-700 px-3 py-1 rounded-full transition-colors"
+                                    data-id="3" data-name="Gardening Tool Set" data-price="1200">
+                                    <i class="fas fa-cart-plus"></i> Add
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 4 -->
+                    <div
+                        class="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:transform hover:scale-105">
+                        <img src="https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80"
+                            alt="Organic Fertilizer" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-2">Organic Fertilizer</h3>
+                            <p class="text-gray-600 text-sm mb-4">Nutrient-rich organic fertilizer specially formulated for
+                                container plants.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-primary-600 font-bold">৳450 BDT</span>
+                                <button
+                                    class="add-to-cart bg-primary-100 hover:bg-primary-200 text-primary-700 px-3 py-1 rounded-full transition-colors"
+                                    data-id="4" data-name="Organic Fertilizer" data-price="450">
+                                    <i class="fas fa-cart-plus"></i> Add
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Blog Posts -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800">Latest from Our Blog</h2>
+                    <a href="blog.html" class="text-primary-600 hover:text-primary-700 font-medium flex items-center">
+                        View All <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Blog Post 1 -->
+                    <div
+                        class="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:transform hover:scale-105">
+                        <img src="https://images.unsplash.com/photo-1598902108854-10e335adac99?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80"
+                            alt="Blog Post" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3">10 Best Plants for Rooftop Gardens in Urban
+                                Areas</h3>
+                            <p class="text-gray-600 mb-4">Discover the most resilient and beautiful plants that thrive in
+                                rooftop environments despite challenging urban conditions.</p>
+                            <a href="blog-detail.html" class="text-primary-600 hover:text-primary-700 font-medium">Read More
+                                →</a>
+                        </div>
+                    </div>
+
+                    <!-- Blog Post 2 -->
+                    <div
+                        class="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:transform hover:scale-105">
+                        <img src="IDP-2-main/co.jpeg"
+                            alt="Blog Post" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3">How to Create a Water-Efficient Rooftop
+                                Garden</h3>
+                            <p class="text-gray-600 mb-4">Learn innovative techniques to conserve water while maintaining a
+                                lush and thriving rooftop garden in any climate.</p>
+                            <a href="blog-detail.html" class="text-primary-600 hover:text-primary-700 font-medium">Read More
+                                →</a>
+                        </div>
+                    </div>
+
+                    <!-- Blog Post 3 -->
+                    <div
+                        class="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:transform hover:scale-105">
+                        <img src="IDP-2-main/t.jpeg"
+                            alt="Blog Post" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3">Seasonal Guide: What to Plant Each Month on
+                                Your Rooftop</h3>
+                            <p class="text-gray-600 mb-4">A comprehensive monthly planting guide to help you maximize your
+                                rooftop garden's productivity throughout the year.</p>
+                            <a href="blog-detail.html" class="text-primary-600 hover:text-primary-700 font-medium">Read More
+                                →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="py-16 bg-primary-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">What Our Customers Say</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                        Hear from urban gardeners who have transformed their rooftops with our help.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="bg-white p-8 rounded-lg shadow-md">
+                        <div class="flex items-center mb-4">
+                            <div class="text-primary-500">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-6">
+                            "Urban Green Haven transformed my barren rooftop into a thriving garden oasis. Their
+                            consultation service was invaluable, and the plants they recommended have flourished despite the
+                            challenging conditions."
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mr-4">
+                                <span class="text-primary-700 font-bold">RA</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Rahima Ahmed</h4>
+                                <p class="text-gray-500 text-sm">Dhaka</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="bg-white p-8 rounded-lg shadow-md">
+                        <div class="flex items-center mb-4">
+                            <div class="text-primary-500">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-6">
+                            "I've been growing vegetables on my rooftop for a year now thanks to Urban Green Haven. Their
+                            organic fertilizers and quality tools have made a huge difference. I'm now harvesting fresh
+                            produce weekly!"
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mr-4">
+                                <span class="text-primary-700 font-bold">KI</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Kamal Islam</h4>
+                                <p class="text-gray-500 text-sm">Chittagong</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="bg-white p-8 rounded-lg shadow-md">
+                        <div class="flex items-center mb-4">
+                            <div class="text-primary-500">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-6">
+                            "The online consultation service was exactly what I needed. The expert gave me personalized
+                            advice for my specific rooftop conditions, and now my garden is the envy of all my neighbors!"
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mr-4">
+                                <span class="text-primary-700 font-bold">SR</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Sadia Rahman</h4>
+                                <p class="text-gray-500 text-sm">Sylhet</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="py-16 bg-primary-600">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl font-bold text-white mb-6">Ready to Transform Your Rooftop?</h2>
+                <p class="text-xl text-primary-100 mb-8 max-w-3xl mx-auto">
+                    Join thousands of urban gardeners who have created their own green paradise above the city.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="shop.html"
+                        class="bg-white hover:bg-gray-100 text-primary-600 font-medium py-3 px-8 rounded-lg transition-colors duration-300">
+                        Shop Now
+                    </a>
+                    <a href="consultation.html"
+                        class="bg-primary-700 hover:bg-primary-800 text-white font-medium py-3 px-8 rounded-lg transition-colors duration-300">
+                        Book a Consultation
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white pt-16 pb-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <!-- Company Info -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-leaf text-primary-400 mr-2"></i> Urban Green Haven
+                    </h3>
+                    <p class="text-gray-400 mb-4">
+                        Transforming urban rooftops into lush, productive gardens one space at a time.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="shop.html" class="text-gray-400 hover:text-primary-400 transition-colors">Shop</a>
+                        </li>
+                        <li><a href="blog.html" class="text-gray-400 hover:text-primary-400 transition-colors">Blog</a>
+                        </li>
+                        <li><a href="qa.html" class="text-gray-400 hover:text-primary-400 transition-colors">Q&A</a>
+                        </li>
+                        <li><a href="consultation.html"
+                                class="text-gray-400 hover:text-primary-400 transition-colors">Consultation</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-primary-400 transition-colors">About
+                                Us</a></li>
+                        <li><a href="contact.html"
+                                class="text-gray-400 hover:text-primary-400 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Categories -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Categories</h3>
+                    <ul class="space-y-2">
+                        <li><a href="shop.html?category=flower"
+                                class="text-gray-400 hover:text-primary-400 transition-colors">Flower Plants</a></li>
+                        <li><a href="shop.html?category=fruit"
+                                class="text-gray-400 hover:text-primary-400 transition-colors">Fruit Plants</a></li>
+                        <li><a href="shop.html?category=vegetable"
+                                class="text-gray-400 hover:text-primary-400 transition-colors">Vegetable Plants</a></li>
+                        <li><a href="shop.html?category=fascinated"
+                                class="text-gray-400 hover:text-primary-400 transition-colors">Fascinated Plants</a>
+                        </li>
+                        <li><a href="shop.html?category=fertilizer"
+                                class="text-gray-400 hover:text-primary-400 transition-colors">Organic Fertilizers</a>
+                        </li>
+                        <li><a href="shop.html?category=tools"
+                                class="text-gray-400 hover:text-primary-400 transition-colors">Gardening Tools</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-primary-400"></i>
+                            <span>123 Green Street, Dhaka, Bangladesh</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-3 text-primary-400"></i>
+                            <span>+880 1234 567890</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-primary-400"></i>
+                            <span>info@urbangreenhaven.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-clock mr-3 text-primary-400"></i>
+                            <span>9:00 AM - 6:00 PM, Everyday</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                    &copy; 2025 Urban Green Haven. All rights reserved.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="privacy.html"
+                        class="text-gray-400 hover:text-primary-400 text-sm transition-colors">Privacy Policy</a>
+                    <a href="terms.html" class="text-gray-400 hover:text-primary-400 text-sm transition-colors">Terms of
+                        Service</a>
+                    <a href="admin-login.html"
+                        class="text-gray-400 hover:text-primary-400 text-sm transition-colors">Admin Panel</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Chatbot -->
+    <div id="chat-widget" class="fixed bottom-4 right-4 z-50">
+        <!-- Chat Button -->
+        <button id="chat-button" class="bg-primary-600 text-white rounded-full p-4 shadow-lg hover:bg-primary-700 transition-colors flex items-center gap-2 group">
+            <i class="fas fa-leaf text-xl"></i>
+            <span class="hidden group-hover:inline-block text-sm font-medium">Ask me anything!</span>
+        </button>
+
+        <!-- Chat Window -->
+        <div id="chat-window" class="hidden fixed bottom-20 right-4 w-96 bg-white rounded-lg shadow-xl flex flex-col h-[600px] transform transition-all duration-300 ease-in-out">
+            <!-- Chat Header -->
+            <div class="bg-primary-600 text-white p-4 rounded-t-lg flex justify-between items-center">
+                <div class="flex items-center">
+                    <i class="fas fa-leaf mr-2"></i>
+                    <h3 class="font-semibold">Urban Green Assistant</h3>
+                </div>
+                <button id="close-chat" class="text-white hover:text-gray-200 transition-colors">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Chat Messages -->
+            <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-4">
+                <div class="flex items-start">
+                    <div class="bg-primary-100 rounded-lg p-3 max-w-[80%]">
+                        <p class="text-gray-800">Hello! 👋 I'm your Urban Green Haven assistant. How can I help you today?</p>
+                        <div class="mt-4 space-y-2">
+                            <button class="quick-question w-full text-left px-3 py-2 bg-white rounded-lg hover:bg-primary-50 transition-colors text-sm">
+                                What plants are best for rooftop gardens?
+                            </button>
+                            <button class="quick-question w-full text-left px-3 py-2 bg-white rounded-lg hover:bg-primary-50 transition-colors text-sm">
+                                How much does consultation cost?
+                            </button>
+                            <button class="quick-question w-full text-left px-3 py-2 bg-white rounded-lg hover:bg-primary-50 transition-colors text-sm">
+                                What's the best time to start a rooftop garden?
+                            </button>
+                            <button class="quick-question w-full text-left px-3 py-2 bg-white rounded-lg hover:bg-primary-50 transition-colors text-sm">
+                                How do I maintain my rooftop garden?
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Input -->
+            <div class="border-t p-4">
+                <form id="chat-form" class="flex gap-2">
+                    <input type="text" id="chat-input" 
+                           class="flex-1 border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                           placeholder="Type your question here...">
+                    <button type="submit" 
+                            class="bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors flex items-center gap-2">
+                        <span>Send</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Chatbot functionality
+        const chatButton = document.getElementById('chat-button');
+        const chatWindow = document.getElementById('chat-window');
+        const closeChat = document.getElementById('close-chat');
+        const chatForm = document.getElementById('chat-form');
+        const chatInput = document.getElementById('chat-input');
+        const chatMessages = document.getElementById('chat-messages');
+
+        // Q&A Database
+        const qaDatabase = {
+            'plants': {
+                question: 'What plants are best for rooftop gardens?',
+                answer: 'For rooftop gardens, we recommend:\n\n1. Vegetables:\n- Cherry Tomatoes (৳350 BDT)\n- Green Beans\n- Lettuce\n- Spinach\n- Capsicum\n- Eggplant\n\n2. Herbs:\n- Basil\n- Mint\n- Coriander\n- Thyme\n- Rosemary\n- Oregano\n\n3. Flowers:\n- Marigolds\n- Petunias\n- Sunflowers\n- Zinnias\n- Cosmos\n- Nasturtiums\n\n4. Fruits:\n- Dwarf Mango Tree (৳1500 BDT)\n- Strawberries\n- Citrus trees\n- Guava\n- Pomegranate\n\nAll these plants are available in our shop and come with detailed care instructions.'
+            },
+            'consultation': {
+                question: 'How much does consultation cost?',
+                answer: 'We offer three consultation packages:\n\n1. Online Consultation: ৳500 BDT per session\n- Video call with our experts\n- Personalized advice\n- Digital garden plan\n- Plant selection guide\n- Care instructions\n\n2. Onsite Consultation: ৳1500 BDT per visit\n- Expert visit to your rooftop\n- Detailed assessment\n- Customized solutions\n- Space planning\n- Soil testing\n\n3. Monthly Maintenance Package: ৳3000 BDT per month\n- Regular check-ups\n- Maintenance guidance\n- Emergency support\n- Seasonal care tips\n- Pest control advice'
+            },
+            'timing': {
+                question: "What's the best time to start a rooftop garden?",
+                answer: 'The best time to start depends on what you want to grow:\n\n1. Winter (Jan-Feb):\n- Perfect for leafy vegetables\n- Cool-weather crops\n- Root vegetables\n- Cabbage\n- Cauliflower\n\n2. Spring (Mar-Apr):\n- Ideal for most vegetables\n- Flowering plants\n- Herbs\n- Beans\n- Cucumbers\n\n3. Summer (May-Jun):\n- Heat-tolerant plants\n- Tropical varieties\n- Fast-growing crops\n- Okra\n- Sweet potatoes\n\n4. Monsoon (Jul-Aug):\n- Water-loving plants\n- Quick-growing varieties\n- Leafy greens\n- Herbs\n\nWe recommend starting with our Herb Garden Kit (৳650 BDT) as it\'s perfect for beginners.'
+            },
+            'maintenance': {
+                question: 'How do I maintain my rooftop garden?',
+                answer: 'Here are essential maintenance tips:\n\n1. Watering:\n- Water in the morning\n- Check soil moisture daily\n- Use our Organic Fertilizer (৳450 BDT)\n- Install drip irrigation\n- Mulch to retain moisture\n\n2. Sunlight:\n- Ensure 6-8 hours of sunlight\n- Use shade cloth if needed\n- Rotate plants regularly\n- Monitor sun patterns\n- Adjust plant positions\n\n3. Tools:\n- Use our Gardening Tool Set (৳1200 BDT)\n- Regular pruning\n- Proper soil maintenance\n- Clean tools after use\n- Store tools properly\n\n4. Protection:\n- Wind barriers for tall plants\n- Pest control with neem oil\n- Regular inspection\n- Disease prevention\n- Weather protection\n\nFor professional maintenance, consider our Monthly Maintenance Package (৳3000 BDT).'
+            },
+            'soil': {
+                question: 'What type of soil should I use?',
+                answer: 'For rooftop gardens, we recommend:\n\n1. Potting Mix:\n- Light and well-draining\n- Rich in organic matter\n- pH balanced (6.0-7.0)\n- Contains perlite/vermiculite\n\n2. Container Requirements:\n- Use our Organic Fertilizer (৳450 BDT)\n- Add compost regularly\n- Ensure proper drainage\n- Monitor soil quality\n\n3. Soil Maintenance:\n- Regular aeration\n- Nutrient replenishment\n- pH testing\n- Organic amendments\n\n4. Tips:\n- Never use garden soil\n- Replace soil every 2-3 years\n- Use quality potting mix\n- Consider raised beds'
+            },
+            'pests': {
+                question: 'How do I control pests naturally?',
+                answer: 'Natural pest control methods:\n\n1. Prevention:\n- Regular inspection\n- Clean garden area\n- Proper spacing\n- Healthy plants\n\n2. Natural Solutions:\n- Neem oil spray\n- Garlic-chili spray\n- Companion planting\n- Beneficial insects\n\n3. Common Pests:\n- Aphids: Use soap water\n- Caterpillars: Hand pick\n- Mites: Increase humidity\n- Snails: Beer traps\n\n4. Products:\n- Organic Pesticide (৳300 BDT)\n- Neem Oil (৳250 BDT)\n- Beneficial Insects Kit (৳800 BDT)'
+            },
+            'watering': {
+                question: 'How often should I water my plants?',
+                answer: 'Watering guidelines:\n\n1. General Rules:\n- Water in the morning\n- Check soil moisture\n- Adjust for weather\n- Consider plant type\n\n2. Frequency:\n- Summer: Daily\n- Winter: Every 2-3 days\n- Monsoon: As needed\n- Spring: Every 1-2 days\n\n3. Methods:\n- Drip irrigation\n- Watering can\n- Sprinkler system\n- Self-watering pots\n\n4. Tips:\n- Don\'t overwater\n- Check drainage\n- Use mulch\n- Monitor plant health'
+            },
+            'fertilizer': {
+                question: 'What fertilizers should I use?',
+                answer: 'Fertilizer recommendations:\n\n1. Organic Options:\n- Our Organic Fertilizer (৳450 BDT)\n- Compost\n- Vermicompost\n- Fish emulsion\n\n2. Application:\n- Follow instructions\n- Don\'t over-fertilize\n- Regular schedule\n- Seasonal adjustment\n\n3. Types:\n- Slow-release\n- Liquid fertilizer\n- Granular\n- Foliar spray\n\n4. Tips:\n- Test soil first\n- Use appropriate amounts\n- Water after applying\n- Store properly'
+            }
+        };
+
+        // Toggle chat window
+        chatButton.addEventListener('click', () => {
+            chatWindow.classList.toggle('hidden');
+            if (!chatWindow.classList.contains('hidden')) {
+                chatInput.focus();
+            }
+        });
+
+        closeChat.addEventListener('click', () => {
+            chatWindow.classList.add('hidden');
+        });
+
+        // Handle quick questions
+        document.querySelectorAll('.quick-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const question = button.textContent.trim();
+                chatInput.value = question;
+                handleQuestion(question);
+            });
+        });
+
+        // Handle form submission
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const question = chatInput.value.trim();
+            if (!question) return;
+            
+            handleQuestion(question);
+            chatInput.value = '';
+        });
+
+        function handleQuestion(question) {
+            // Add user message
+            addMessage(question, 'user');
+
+            // Find matching answer
+            let answer = 'I apologize, but I don\'t have information about that. Please contact our support team for assistance.';
+            
+            // Check for keywords in the question
+            const lowerQuestion = question.toLowerCase();
+            if (lowerQuestion.includes('plant') || lowerQuestion.includes('grow') || lowerQuestion.includes('vegetable')) {
+                answer = qaDatabase.plants.answer;
+            } else if (lowerQuestion.includes('consult') || lowerQuestion.includes('cost') || lowerQuestion.includes('price')) {
+                answer = qaDatabase.consultation.answer;
+            } else if (lowerQuestion.includes('time') || lowerQuestion.includes('start') || lowerQuestion.includes('season')) {
+                answer = qaDatabase.timing.answer;
+            } else if (lowerQuestion.includes('maintain') || lowerQuestion.includes('care') || lowerQuestion.includes('water')) {
+                answer = qaDatabase.maintenance.answer;
+            } else if (lowerQuestion.includes('soil') || lowerQuestion.includes('potting') || lowerQuestion.includes('mix')) {
+                answer = qaDatabase.soil.answer;
+            } else if (lowerQuestion.includes('pest') || lowerQuestion.includes('insect') || lowerQuestion.includes('bug')) {
+                answer = qaDatabase.pests.answer;
+            } else if (lowerQuestion.includes('water') || lowerQuestion.includes('irrigation') || lowerQuestion.includes('moisture')) {
+                answer = qaDatabase.watering.answer;
+            } else if (lowerQuestion.includes('fertilizer') || lowerQuestion.includes('nutrient') || lowerQuestion.includes('feed')) {
+                answer = qaDatabase.fertilizer.answer;
+            }
+
+            // Add bot response
+            setTimeout(() => {
+                addMessage(answer, 'bot');
+            }, 500);
+        }
+
+        function addMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `flex items-start ${sender === 'user' ? 'justify-end' : ''}`;
+            
+            const messageContent = document.createElement('div');
+            messageContent.className = `${sender === 'user' ? 'bg-primary-600 text-white' : 'bg-primary-100 text-gray-800'} rounded-lg p-3 max-w-[80%]`;
+            
+            // Convert newlines to <br> tags for bot messages
+            if (sender === 'bot') {
+                messageContent.innerHTML = text.replace(/\n/g, '<br>');
+            } else {
+                messageContent.textContent = text;
+            }
+            
+            messageDiv.appendChild(messageContent);
+            chatMessages.appendChild(messageDiv);
+            
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Add keyboard shortcut (Esc) to close chat
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !chatWindow.classList.contains('hidden')) {
+                chatWindow.classList.add('hidden');
+            }
+        });
+
+        // Add click outside to close
+        document.addEventListener('click', (e) => {
+            if (!chatWindow.classList.contains('hidden') && 
+                !chatWindow.contains(e.target) && 
+                !chatButton.contains(e.target)) {
+                chatWindow.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+
+</html>

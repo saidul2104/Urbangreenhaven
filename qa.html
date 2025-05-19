@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q&A - Urban Green Haven</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-leaf text-primary-600 text-2xl mr-2"></i>
+                        <span class="font-bold text-xl text-primary-700">Urban Green Haven</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-primary-500 transition-colors">Home</a>
+                    <a href="shop.html" class="text-gray-600 hover:text-primary-500 transition-colors">Shop</a>
+                    <a href="blog.html" class="text-gray-600 hover:text-primary-500 transition-colors">Blog</a>
+                    <a href="qa.html"
+                        class="text-primary-700 font-medium hover:text-primary-500 transition-colors">Q&A</a>
+                    <a href="consultation.html"
+                        class="text-gray-600 hover:text-primary-500 transition-colors">Consultation</a>
+                    <a href="cart.html" class="text-gray-600 hover:text-primary-500 transition-colors relative">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span
+                            class="absolute -top-2 -right-2 bg-primary-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs"
+                            id="cart-count">0</span>
+                    </a>
+                    <a href="login.html" class="text-gray-600 hover:text-primary-500 transition-colors">
+                        <i class="fas fa-user"></i>
+                    </a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-600 hover:text-primary-500 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html" class="block px-3 py-2 text-gray-600 hover:text-primary-500">Home</a>
+                <a href="shop.html" class="block px-3 py-2 text-gray-600 hover:text-primary-500">Shop</a>
+                <a href="blog.html" class="block px-3 py-2 text-gray-600 hover:text-primary-500">Blog</a>
+                <a href="qa.html" class="block px-3 py-2 text-primary-700 font-medium">Q&A</a>
+                <a href="consultation.html"
+                    class="block px-3 py-2 text-gray-600 hover:text-primary-500">Consultation</a>
+                <a href="cart.html" class="block px-3 py-2 text-gray-600 hover:text-primary-500">Cart</a>
+                <a href="login.html" class="block px-3 py-2 text-gray-600 hover:text-primary-500">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Add padding to body to account for fixed header -->
+    <div class="pt-16">
+        <!-- Q&A Header -->
+        <div class="bg-primary-600 py-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h1 class="text-3xl font-bold text-white">Question & Answer</h1>
+                <p class="mt-2 text-primary-100">Get expert answers to your rooftop gardening questions</p>
+            </div>
+        </div>
+
+        <!-- Q&A Content -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Main Content -->
+                <div class="lg:w-2/3">
+                    <!-- Ask a Question -->
+                    <div class="bg-white rounded-lg shadow-md p-6 mb-10 hover:shadow-lg transition-shadow duration-300">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-6">Ask a Question</h2>
+
+                        <form id="questionForm" class="space-y-4">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Your Name*</label>
+                                    <input type="text" id="name" name="name" required
+                                        class="w-full px-4 py-2 border-2 border-primary-200 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-500 transition-colors">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Your Email*</label>
+                                    <input type="email" id="email" name="email" required
+                                        class="w-full px-4 py-2 border-2 border-primary-200 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-500 transition-colors">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="question" class="block text-sm font-medium text-gray-700 mb-1">Your Question*</label>
+                                <textarea id="question" name="question" rows="4" required
+                                    class="w-full px-4 py-2 border-2 border-primary-200 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-500 transition-colors"></textarea>
+                            </div>
+
+                            <div class="flex items-start">
+                                <input type="checkbox" id="terms" name="terms" required
+                                    class="mt-1 h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded">
+                                <label for="terms" class="ml-2 block text-sm text-gray-600">
+                                    I agree to the <a href="privacy.html" class="text-primary-600 hover:underline">privacy policy</a> and understand my question will be published publicly.
+                                </label>
+                            </div>
+
+                            <button type="submit"
+                                class="bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white font-medium py-3 px-8 rounded-md transition-all duration-300 transform hover:scale-105 shadow-lg">
+                                Submit Question
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- FAQ Tabs -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden mb-10 hover:shadow-lg transition-shadow duration-300">
+                        <div class="border-b border-gray-200">
+                            <div class="flex overflow-x-auto">
+                                <button class="tab-button py-4 px-6 bg-primary-50 text-primary-600 font-medium border-b-2 border-primary-600 focus:outline-none whitespace-nowrap"
+                                    data-tab="general">
+                                    General Questions
+                                </button>
+                                <button class="tab-button py-4 px-6 text-gray-600 hover:bg-gray-50 focus:outline-none whitespace-nowrap"
+                                    data-tab="plants">
+                                    Plant Care
+                                </button>
+                                <button class="tab-button py-4 px-6 text-gray-600 hover:bg-gray-50 focus:outline-none whitespace-nowrap"
+                                    data-tab="setup">
+                                    Garden Setup
+                                </button>
+                                <button class="tab-button py-4 px-6 text-gray-600 hover:bg-gray-50 focus:outline-none whitespace-nowrap"
+                                    data-tab="pests">
+                                    Pest Control
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Content -->
+                        <div class="p-6">
+                            <!-- General Questions -->
+                            <div class="tab-content" id="general">
+                                <div class="space-y-6">
+                                    <div class="border-b border-gray-200 pb-4">
+                                        <button
+                                            class="faq-toggle flex items-center justify-between w-full text-left focus:outline-none">
+                                            <h3 class="text-lg font-medium text-gray-800">What is rooftop gardening?</h3>
+                                            <i class="fas fa-chevron-down text-gray-500 transition-transform"></i>
+                                        </button>
+                                        <div class="faq-content hidden mt-2">
+                                            <p class="text-gray-600">
+                                                Rooftop gardening is the practice of growing plants on the roof of a
+                                                building. It can be done for various purposes including food production,
+                                                environmental benefits, aesthetic enhancement, or simply for recreational
+                                                gardening. Rooftop gardens can range from simple container gardens to
+                                                elaborate green roof systems with specialized layers for drainage, soil
+                                                retention, and plant support.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="border-b border-gray-200 pb-4">
+                                        <button
+                                            class="faq-toggle flex items-center justify-between w-full text-left focus:outline-none">
+                                            <h3 class="text-lg font-medium text-gray-800">Do I need permission to create a
+                                                rooftop garden?</h3>
+                                            <i class="fas fa-chevron-down text-gray-500 transition-transform"></i>
+                                        </button>
+                                        <div class="faq-content hidden mt-2">
+                                            <p class="text-gray-600">
+                                                Yes, in most cases you will need permission. If you own the building, you
+                                                should check local building codes and regulations. If you're a tenant,
+                                                you'll need permission from your landlord or building management. It's also
+                                                important to ensure that the roof can support the weight of a garden, which
+                                                might require an assessment from a structural engineer.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="border-b border-gray-200 pb-4">
+                                        <button
+                                            class="faq-toggle flex items-center justify-between w-full text-left focus:outline-none">
+                                            <h3 class="text-lg font-medium text-gray-800">How much does it cost to start a
+                                                rooftop garden?</h3>
+                                            <i class="fas fa-chevron-down text-gray-500 transition-transform"></i>
+                                        </button>
+                                        <div class="faq-content hidden mt-2">
+                                            <p class="text-gray-600">
+                                                The cost of starting a rooftop garden varies widely depending on the scope
+                                                of your project. A simple container garden can cost as little as a few
+                                                thousand taka for pots, soil, and plants. More elaborate setups with raised
+                                                beds, irrigation systems, and special roof preparations can cost
+                                                significantly more. Our consultants can provide a personalized estimate
+                                                based on your specific space and needs.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Plant Care -->
+                            <div class="tab-content hidden" id="plants">
+                                <div class="space-y-6">
+                                    <div class="border-b border-gray-200 pb-4">
+                                        <button
+                                            class="faq-toggle flex items-center justify-between w-full text-left focus:outline-none">
+                                            <h3 class="text-lg font-medium text-gray-800">Which plants are best for rooftop
+                                                gardens in Bangladesh?</h3>
+                                            <i class="fas fa-chevron-down text-gray-500 transition-transform"></i>
+                                        </button>
+                                        <div class="faq-content hidden mt-2">
+                                            <p class="text-gray-600">
+                                                In Bangladesh's climate, many plants thrive in rooftop gardens. For
+                                                vegetables, consider tomatoes, chilies, eggplants, okra, and leafy greens.
+                                                For fruits, try strawberries, papaya, and dwarf varieties of mango or guava.
+                                                Flowers like marigolds, roses, and bougainvillea add color and many herbs
+                                                such as mint, basil, and coriander grow well too. Plants native to tropical
+                                                climates are ideal as they are adapted to the heat and monsoon conditions.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="border-b border-gray-200 pb-4">
+                                        <button
+                                            class="faq-toggle flex items-center justify-between w-full text-left focus:outline-none">
+                                            <h3 class="text-lg font-medium text-gray-800">How often should I water my
+                                                rooftop plants?</h3>
+                                            <i class="fas fa-chevron-down text-gray-500 transition-transform"></i>
+                                        </button>
+                                        <div class="faq-content hidden mt-2">
+                                            <p class="text-gray-600">
+                                                Watering frequency depends on various factors including plant type,
+                                                container size, soil type, and weather conditions. In general, during hot,
+                                                dry periods, most plants will need watering once a day, typically in the
+                                                early morning or evening. During rainy seasons, you April not need to water
+                                                at all. Always check the soil moisture by feeling about an inch below the
+                                                surface - if it's dry, it's time to water.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Garden Setup -->
+                            <div class="tab-content hidden" id="setup">
+                                <div class="space-y-6">
+                                    <div class="border-b border-gray-200 pb-4">
+                                        <button
+                                            class="faq-toggle flex items-center justify-between w-full text-left focus:outline-none">
+                                            <h3 class="text-lg font-medium text-gray-800">What containers work best for
+                                                rooftop gardens?</h3>
+                                            <i class="fas fa-chevron-down text-gray-500 transition-transform"></i>
+                                        </button>
+                                        <div class="faq-content hidden mt-2">
+                                            <p class="text-gray-600">
+                                                Lightweight containers are ideal for rooftop gardens to minimize structural
+                                                stress. Options include plastic pots, fabric grow bags, repurposed buckets
+                                                or drums, and wooden raised beds lined with geotextile fabric. Ensure all
+                                                containers have drainage holes to prevent waterlogging. Larger containers
+                                                are generally better as they hold more soil, retain moisture longer, and
+                                                provide more space for root growth.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="border-b border-gray-200 pb-4">
+                                        <button
+                                            class="faq-toggle flex items-center justify-between w-full text-left focus:outline-none">
+                                            <h3 class="text-lg font-medium text-gray-800">What type of soil should I use in
+                                                my rooftop garden?</h3>
+                                            <i class="fas fa-chevron-down text-gray-500 transition-transform"></i>
+                                        </button>
+                                        <div class="faq-content hidden mt-2">
+                                            <p class="text-gray-600">
+                                                For rooftop gardens, lightweight soil mixes are ideal. A good mix includes
+                                                1/3 compost, 1/3 coco peat or peat moss, and 1/3 perlite or vermiculite.
+                                                This creates a medium that's nutrient-rich, retains moisture well, but also
+                                                drains excess water and doesn't become too heavy when wet. Avoid using
+                                                regular garden soil, which is too heavy and can become compacted in
+                                                containers.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Pest Control -->
+                            <div class="tab-content hidden" id="pests">
+                                <div class="space-y-6">
+                                    <div class="border-b border-gray-200 pb-4">
+                                        <button
+                                            class="faq-toggle flex items-center justify-between w-full text-left focus:outline-none">
+                                            <h3 class="text-lg font-medium text-gray-800">How can I control pests naturally
+                                                in my rooftop garden?</h3>
+                                            <i class="fas fa-chevron-down text-gray-500 transition-transform"></i>
+                                        </button>
+                                        <div class="faq-content hidden mt-2">
+                                            <p class="text-gray-600">
+                                                Natural pest control methods include companion planting (e.g., marigolds
+                                                deter many pests), introducing beneficial insects like ladybugs, using neem
+                                                oil spray, making garlic or chili pepper sprays, setting up physical
+                                                barriers such as row covers, and maintaining good garden hygiene by removing
+                                                diseased plants promptly. Regular inspection of plants will help catch pest
+                                                problems before they become severe.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="border-b border-gray-200 pb-4">
+                                        <button
+                                            class="faq-toggle flex items-center justify-between w-full text-left focus:outline-none">
+                                            <h3 class="text-lg font-medium text-gray-800">What are the common pests in
+                                                rooftop gardens in Bangladesh?</h3>
+                                            <i class="fas fa-chevron-down text-gray-500 transition-transform"></i>
+                                        </button>
+                                        <div class="faq-content hidden mt-2">
+                                            <p class="text-gray-600">
+                                                Common pests in Bangladesh rooftop gardens include aphids, thrips,
+                                                whiteflies, spider mites, caterpillars, and various beetles. You April also
+                                                encounter snails, slugs, and ants, especially during rainy seasons. Fungal
+                                                diseases like powdery mildew and root rot can be issues during humid
+                                                periods. Regular monitoring, proper spacing for air circulation, and
+                                                appropriate watering practices can help prevent many pest and disease
+                                                problems.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Questions & Answers -->
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-6">Recent Questions & Answers</h2>
+
+                        <div id="questionsList" class="space-y-6">
+                            <!-- Questions will be dynamically added here -->
+                        </div>
+
+                        <!-- More Questions Link -->
+                        <div class="text-center mt-8">
+                            <a href="qa-archive.php"
+                                class="inline-block bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-6 rounded-md transition-colors duration-300">
+                                View More Questions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="lg:w-1/3">
+                    <!-- Call to Action -->
+                    <div class="bg-gradient-to-r from-primary-50 to-white rounded-lg shadow-md p-6 mb-6 hover:shadow-lg transition-shadow duration-300">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Need Personalized Help?</h3>
+                        <p class="text-gray-600 mb-4">Our experts provide customized solutions for your specific gardening challenges.</p>
+                        <a href="consultation.html"
+                            class="block w-full bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white font-medium py-3 px-4 rounded-md text-center transition-all duration-300 transform hover:scale-105 shadow-lg">
+                            Book a Consultation
+                        </a>
+                    </div>
+
+                    <!-- Popular Topics -->
+                    <div class="bg-white rounded-lg shadow-md p-6 mb-6 hover:shadow-lg transition-shadow duration-300">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Popular Topics</h3>
+                        <ul class="space-y-3">
+                            <li>
+                                <a href="qa.html?topic=watering"
+                                    class="flex justify-between items-center p-3 rounded-md text-gray-600 hover:text-primary-600 hover:bg-primary-50 transition-all duration-300">
+                                    <span class="font-medium">Watering Techniques</span>
+                                    <i class="fas fa-chevron-right text-gray-400 group-hover:text-primary-600"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="qa.html?topic=vegetables"
+                                    class="flex justify-between items-center p-3 rounded-md text-gray-600 hover:text-primary-600 hover:bg-primary-50 transition-all duration-300">
+                                    <span class="font-medium">Growing Vegetables</span>
+                                    <i class="fas fa-chevron-right text-gray-400 group-hover:text-primary-600"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="qa.html?topic=containers"
+                                    class="flex justify-between items-center p-3 rounded-md text-gray-600 hover:text-primary-600 hover:bg-primary-50 transition-all duration-300">
+                                    <span class="font-medium">Container Gardening</span>
+                                    <i class="fas fa-chevron-right text-gray-400 group-hover:text-primary-600"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="qa.html?topic=pests"
+                                    class="flex justify-between items-center p-3 rounded-md text-gray-600 hover:text-primary-600 hover:bg-primary-50 transition-all duration-300">
+                                    <span class="font-medium">Pest Control</span>
+                                    <i class="fas fa-chevron-right text-gray-400 group-hover:text-primary-600"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="qa.html?topic=monsoon"
+                                    class="flex justify-between items-center p-3 rounded-md text-gray-600 hover:text-primary-600 hover:bg-primary-50 transition-all duration-300">
+                                    <span class="font-medium">Monsoon Care</span>
+                                    <i class="fas fa-chevron-right text-gray-400 group-hover:text-primary-600"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Related Products -->
+                    <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Products You Might Need</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center p-3 rounded-md hover:bg-primary-50 transition-all duration-300">
+                                <img src="https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80"
+                                    alt="Product" class="w-16 h-16 object-cover rounded-md mr-3 shadow-sm">
+                                <div>
+                                    <h4 class="text-sm font-medium text-gray-800">Organic Fertilizer</h4>
+                                    <p class="text-xs text-gray-500 mt-1">৳450 BDT</p>
+                                    <a href="shop.html" class="text-xs text-primary-600 hover:text-primary-700 font-medium">View Product</a>
+                                </div>
+                            </div>
+                            <div class="flex items-center p-3 rounded-md hover:bg-primary-50 transition-all duration-300">
+                                <img src="https://images.unsplash.com/photo-1623241899289-e9a64d8c4e7a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80"
+                                    alt="Product" class="w-16 h-16 object-cover rounded-md mr-3 shadow-sm">
+                                <div>
+                                    <h4 class="text-sm font-medium text-gray-800">Gardening Tool Set</h4>
+                                    <p class="text-xs text-gray-500 mt-1">৳1200 BDT</p>
+                                    <a href="shop.html" class="text-xs text-primary-600 hover:text-primary-700 font-medium">View Product</a>
+                                </div>
+                            </div>
+                            <div class="flex items-center p-3 rounded-md hover:bg-primary-50 transition-all duration-300">
+                                <img src="https://images.unsplash.com/photo-1596573311809-38b7a6d17e8d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80"
+                                    alt="Product" class="w-16 h-16 object-cover rounded-md mr-3 shadow-sm">
+                                <div>
+                                    <h4 class="text-sm font-medium text-gray-800">Herb Garden Kit</h4>
+                                    <p class="text-xs text-gray-500 mt-1">৳650 BDT</p>
+                                    <a href="shop.html" class="text-xs text-primary-600 hover:text-primary-700 font-medium">View Product</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <!-- Company Info -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-leaf text-primary-400 mr-2"></i> Urban Green Haven
+                    </h3>
+                    <p class="text-gray-400 mb-4">
+                        Transforming urban rooftops into lush, productive gardens one space at a time.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="shop.html" class="text-gray-400 hover:text-primary-400 transition-colors">Shop</a>
+                        </li>
+                        <li><a href="blog.html" class="text-gray-400 hover:text-primary-400 transition-colors">Blog</a>
+                        </li>
+                        <li><a href="qa.html" class="text-gray-400 hover:text-primary-400 transition-colors">Q&A</a>
+                        </li>
+                        <li><a href="consultation.html"
+                                class="text-gray-400 hover:text-primary-400 transition-colors">Consultation</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-primary-400 transition-colors">About
+                                Us</a></li>
+                        <li><a href="contact.html"
+                                class="text-gray-400 hover:text-primary-400 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Categories -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Categories</h3>
+                    <ul class="space-y-2">
+                        <li><a href="shop.html?category=flower"
+                                class="text-gray-400 hover:text-primary-400 transition-colors">Flower Plants</a></li>
+                        <li><a href="shop.html?category=fruit"
+                                class="text-gray-400 hover:text-primary-400 transition-colors">Fruit Plants</a></li>
+                        <li><a href="shop.html?category=vegetable"
+                                class="text-gray-400 hover:text-primary-400 transition-colors">Vegetable Plants</a></li>
+                        <li><a href="shop.html?category=fascinated"
+                                class="text-gray-400 hover:text-primary-400 transition-colors">Fascinated Plants</a>
+                        </li>
+                        <li><a href="shop.html?category=fertilizer"
+                                class="text-gray-400 hover:text-primary-400 transition-colors">Organic Fertilizers</a>
+                        </li>
+                        <li><a href="shop.html?category=tools"
+                                class="text-gray-400 hover:text-primary-400 transition-colors">Gardening Tools</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-primary-400"></i>
+                            <span>123 Green Street, Dhaka, Bangladesh</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-3 text-primary-400"></i>
+                            <span>+880 1234 567890</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-primary-400"></i>
+                            <span>info@urbangreenhaven.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-clock mr-3 text-primary-400"></i>
+                            <span>9:00 AM - 6:00 PM, Everyday</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                    &copy; 2025 Urban Green Haven. All rights reserved.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="privacy.html"
+                        class="text-gray-400 hover:text-primary-400 text-sm transition-colors">Privacy Policy</a>
+                    <a href="terms.html" class="text-gray-400 hover:text-primary-400 text-sm transition-colors">Terms of
+                        Service</a>
+                    <a href="admin-login.html"
+                        class="text-gray-400 hover:text-primary-400 text-sm transition-colors">Admin Panel</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function () {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Cart count update
+        document.addEventListener('DOMContentLoaded', function () {
+            // Load cart from localStorage
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            updateCartCount();
+
+            function updateCartCount() {
+                const cartCount = document.getElementById('cart-count');
+                const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+                cartCount.textContent = totalItems;
+            }
+        });
+
+        // Tab switching
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const tabId = this.getAttribute('data-tab');
+
+                    // Hide all tab contents and deactivate all buttons
+                    tabContents.forEach(content => {
+                        content.classList.add('hidden');
+                    });
+
+                    tabButtons.forEach(btn => {
+                        btn.classList.remove('bg-primary-50', 'text-primary-600', 'border-b-2', 'border-primary-600');
+                        btn.classList.add('text-gray-600', 'hover:bg-gray-50');
+                    });
+
+                    // Show selected tab content and activate button
+                    document.getElementById(tabId).classList.remove('hidden');
+                    this.classList.add('bg-primary-50', 'text-primary-600', 'border-b-2', 'border-primary-600');
+                    this.classList.remove('text-gray-600', 'hover:bg-gray-50');
+                });
+            });
+
+            // FAQ toggles
+            const faqToggles = document.querySelectorAll('.faq-toggle');
+
+            faqToggles.forEach(toggle => {
+                toggle.addEventListener('click', function () {
+                    // Toggle the content visibility
+                    const content = this.nextElementSibling;
+                    content.classList.toggle('hidden');
+
+                    // Toggle the icon rotation
+                    const icon = this.querySelector('i');
+                    icon.classList.toggle('transform');
+                    icon.classList.toggle('rotate-180');
+                });
+            });
+        });
+
+        // Question submission and display
+        document.addEventListener('DOMContentLoaded', function() {
+            const questionForm = document.getElementById('questionForm');
+            const questionsList = document.getElementById('questionsList');
+
+            // Load existing questions
+            loadQuestions();
+
+            questionForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(this);
+                
+                // Submit question
+                fetch('qa-process.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Add new question to the list
+                        addQuestionToList(data.question);
+                        // Clear form
+                        questionForm.reset();
+                        // Show success message
+                        alert('Question submitted successfully!');
+                    } else {
+                        alert(data.message || 'Error submitting question');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while submitting the question');
+                });
+            });
+
+            function loadQuestions() {
+                fetch('qa-process.php?action=get_questions')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            questionsList.innerHTML = '';
+                            data.questions.forEach(question => {
+                                addQuestionToList(question);
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            }
+
+            function addQuestionToList(question) {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300';
+                questionDiv.innerHTML = `
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-lg font-medium text-gray-800">${question.question}</h3>
+                            <p class="text-sm text-gray-500">Asked by ${question.name} on ${new Date(question.created_at).toLocaleDateString()}</p>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <div class="flex items-center space-x-4">
+                            <button onclick="showAnswerForm(${question.id})" class="text-primary-600 hover:text-primary-700 font-medium">
+                                <i class="fas fa-reply mr-1"></i> Answer
+                            </button>
+                        </div>
+                        <div id="answerForm-${question.id}" class="hidden mt-4">
+                            <form onsubmit="submitAnswer(event, ${question.id})" class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Your Name*</label>
+                                    <input type="text" name="name" required class="w-full px-4 py-2 border-2 border-primary-200 rounded-md">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Your Answer*</label>
+                                    <textarea name="answer" rows="3" required class="w-full px-4 py-2 border-2 border-primary-200 rounded-md"></textarea>
+                                </div>
+                                <button type="submit" class="bg-primary-600 text-white px-4 py-2 rounded hover:bg-primary-700">
+                                    Submit Answer
+                                </button>
+                            </form>
+                        </div>
+                        <div id="answers-${question.id}" class="mt-4 space-y-4">
+                            ${question.answers ? question.answers.map(answer => `
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <p class="text-gray-800">${answer.answer}</p>
+                                    <p class="text-sm text-gray-500 mt-2">Answered by ${answer.name} on ${new Date(answer.created_at).toLocaleDateString()}</p>
+                                </div>
+                            `).join('') : ''}
+                        </div>
+                    </div>
+                `;
+                questionsList.insertBefore(questionDiv, questionsList.firstChild);
+            }
+        });
+
+        function showAnswerForm(questionId) {
+            const answerForm = document.getElementById(`answerForm-${questionId}`);
+            answerForm.classList.toggle('hidden');
+        }
+
+        function submitAnswer(event, questionId) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+            formData.append('question_id', questionId);
+
+            fetch('qa-process.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Add new answer to the list
+                    const answersDiv = document.getElementById(`answers-${questionId}`);
+                    const answerDiv = document.createElement('div');
+                    answerDiv.className = 'bg-gray-50 rounded-lg p-4';
+                    answerDiv.innerHTML = `
+                        <p class="text-gray-800">${data.answer.answer}</p>
+                        <p class="text-sm text-gray-500 mt-2">Answered by ${data.answer.name} on ${new Date(data.answer.created_at).toLocaleDateString()}</p>
+                    `;
+                    answersDiv.appendChild(answerDiv);
+                    // Hide answer form
+                    document.getElementById(`answerForm-${questionId}`).classList.add('hidden');
+                    // Clear form
+                    form.reset();
+                } else {
+                    alert(data.message || 'Error submitting answer');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while submitting the answer');
+            });
+        }
+    </script>
+</body>
+
+</html>

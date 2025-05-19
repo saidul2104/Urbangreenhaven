@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Urban Green Haven</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-leaf text-primary-600 text-2xl mr-2"></i>
+                        <span class="font-bold text-xl text-primary-700">Urban Green Haven</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-primary-500 transition-colors">Home</a>
+                    <a href="shop.html" class="text-gray-600 hover:text-primary-500 transition-colors">Shop</a>
+                    <a href="blog.html" class="text-gray-600 hover:text-primary-500 transition-colors">Blog</a>
+                    <a href="qa.html" class="text-gray-600 hover:text-primary-500 transition-colors">Q&A</a>
+                    <a href="consultation.html" class="text-gray-600 hover:text-primary-500 transition-colors">Consultation</a>
+                    <a href="cart.html" class="text-primary-700 font-medium hover:text-primary-500 transition-colors relative">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="absolute -top-2 -right-2 bg-primary-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs" id="cart-count">0</span>
+                    </a>
+                    <a href="login.html" class="text-gray-600 hover:text-primary-500 transition-colors">
+                        <i class="fas fa-user"></i>
+                    </a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-600 hover:text-primary-500 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html" class="block px-3 py-2 text-gray-600 hover:text-primary-500">Home</a>
+                <a href="shop.html" class="block px-3 py-2 text-gray-600 hover:text-primary-500">Shop</a>
+                <a href="blog.html" class="block px-3 py-2 text-gray-600 hover:text-primary-500">Blog</a>
+                <a href="qa.html" class="block px-3 py-2 text-gray-600 hover:text-primary-500">Q&A</a>
+                <a href="consultation.html" class="block px-3 py-2 text-gray-600 hover:text-primary-500">Consultation</a>
+                <a href="cart.html" class="block px-3 py-2 text-primary-700 font-medium">Cart</a>
+                <a href="login.html" class="block px-3 py-2 text-gray-600 hover:text-primary-500">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Cart Header -->
+    <div class="bg-primary-600 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-3xl font-bold text-white">Shopping Cart</h1>
+            <p class="mt-2 text-primary-100">Review your items and proceed to checkout</p>
+        </div>
+    </div>
+
+    <!-- Cart Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Cart Items -->
+            <div class="lg:w-2/3">
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <h2 class="text-lg font-semibold text-gray-800 mb-6">Cart Items</h2>
+                    
+                    <!-- Empty Cart Message (hidden by default) -->
+                    <div id="empty-cart-message" class="hidden text-center py-8">
+                        <i class="fas fa-shopping-cart text-gray-300 text-5xl mb-4"></i>
+                        <h3 class="text-xl font-medium text-gray-700 mb-2">Your cart is empty</h3>
+                        <p class="text-gray-500 mb-6">Looks like you haven't added any items to your cart yet.</p>
+                        <a href="shop.html" class="inline-block bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-6 rounded-md transition-colors duration-300">
+                            Continue Shopping
+                        </a>
+                    </div>
+                    
+                    <!-- Cart Items List -->
+                    <div id="cart-items" class="divide-y divide-gray-200">
+                        <!-- Cart items will be dynamically added here -->
+                    </div>
+                </div>
+                
+                <!-- Continue Shopping -->
+                <div class="flex justify-between items-center mb-6">
+                    <a href="shop.html" class="flex items-center text-primary-600 hover:text-primary-700 font-medium">
+                        <i class="fas fa-arrow-left mr-2"></i>
+                        Continue Shopping
+                    </a>
+                    <button id="clear-cart-btn" class="text-red-600 hover:text-red-700 font-medium flex items-center">
+                        <i class="fas fa-trash-alt mr-2"></i>
+                        Clear Cart
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Order Summary -->
+            <div class="lg:w-1/3">
+                <div class="bg-white rounded-lg shadow-md p-6 sticky top-6">
+                    <h2 class="text-lg font-semibold text-gray-800 mb-6">Order Summary</h2>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Subtotal</span>
+                            <span class="font-medium text-gray-800" id="subtotal">৳0.00</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Shipping</span>
+                            <span class="font-medium text-gray-800" id="shipping">৳100.00</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Tax (5%)</span>
+                            <span class="font-medium text-gray-800" id="tax">৳0.00</span>
+                        </div>
+                        <div class="border-t border-gray-200 pt-4 flex justify-between">
+                            <span class="text-lg font-semibold text-gray-800">Total</span>
+                            <span class="text-lg font-semibold text-gray-800" id="total">৳0.00</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Promo Code -->
+                    <div class="mb-6">
+                        <label for="promo-code" class="block text-sm font-medium text-gray-700 mb-1">Promo Code</label>
+                        <div class="flex">
+                            <input type="text" id="promo-code" class="flex-grow px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-primary-500 focus:border-primary-500" placeholder="Enter code">
+                            <button id="apply-promo" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-r-md transition-colors">
+                                Apply
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Checkout Button -->
+                    <button id="checkout-btn" class="block w-full bg-primary-600 hover:bg-primary-700 text-white font-medium py-3 px-4 rounded-md text-center transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed">
+                        Proceed to Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white pt-16 pb-8 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <!-- Company Info -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-leaf text-primary-400 mr-2"></i> Urban Green Haven
+                    </h3>
+                    <p class="text-gray-400 mb-4">
+                        Transforming urban rooftops into lush, productive gardens one space at a time.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="shop.html" class="text-gray-400 hover:text-primary-400 transition-colors">Shop</a></li>
+                        <li><a href="blog.html" class="text-gray-400 hover:text-primary-400 transition-colors">Blog</a></li>
+                        <li><a href="qa.html" class="text-gray-400 hover:text-primary-400 transition-colors">Q&A</a></li>
+                        <li><a href="consultation.html" class="text-gray-400 hover:text-primary-400 transition-colors">Consultation</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-primary-400 transition-colors">About Us</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-primary-400 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Categories -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Categories</h3>
+                    <ul class="space-y-2">
+                        <li><a href="shop.html?category=flower" class="text-gray-400 hover:text-primary-400 transition-colors">Flower Plants</a></li>
+                        <li><a href="shop.html?category=fruit" class="text-gray-400 hover:text-primary-400 transition-colors">Fruit Plants</a></li>
+                        <li><a href="shop.html?category=vegetable" class="text-gray-400 hover:text-primary-400 transition-colors">Vegetable Plants</a></li>
+                        <li><a href="shop.html?category=fascinated" class="text-gray-400 hover:text-primary-400 transition-colors">Fascinated Plants</a></li>
+                        <li><a href="shop.html?category=fertilizer" class="text-gray-400 hover:text-primary-400 transition-colors">Organic Fertilizers</a></li>
+                        <li><a href="shop.html?category=tools" class="text-gray-400 hover:text-primary-400 transition-colors">Gardening Tools</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-primary-400"></i>
+                            <span>123 Green Street, Dhaka, Bangladesh</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-3 text-primary-400"></i>
+                            <span>+880 1234 567890</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-primary-400"></i>
+                            <span>info@urbangreenhaven.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-clock mr-3 text-primary-400"></i>
+                            <span>9:00 AM - 6:00 PM, Everyday</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                    &copy; 2023 Urban Green Haven. All rights reserved.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="privacy.html" class="text-gray-400 hover:text-primary-400 text-sm transition-colors">Privacy Policy</a>
+                    <a href="terms.html" class="text-gray-400 hover:text-primary-400 text-sm transition-colors">Terms of Service</a>
+                    <a href="admin-login.html" class="text-gray-400 hover:text-primary-400 text-sm transition-colors">Admin Panel</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/cart.js"></script>
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function () {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const emptyCartMessage = document.getElementById('empty-cart-message');
+            const cartCountElement = document.getElementById('cart-count');
+            const subtotalElement = document.getElementById('subtotal');
+            const taxElement = document.getElementById('tax');
+            const totalElement = document.getElementById('total');
+            const checkoutBtn = document.getElementById('checkout-btn');
+            const clearCartBtn = document.getElementById('clear-cart-btn');
+
+            // Load cart items
+            function loadCartItems() {
+                fetch('cart-process.php?action=get')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            displayCartItems(data.items);
+                            updateCartCount(data.items.length);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            }
+
+            // Display cart items
+            function displayCartItems(items) {
+                if (items.length === 0) {
+                    cartItemsContainer.innerHTML = '';
+                    emptyCartMessage.classList.remove('hidden');
+                    checkoutBtn.disabled = true;
+                    return;
+                }
+
+                emptyCartMessage.classList.add('hidden');
+                checkoutBtn.disabled = false;
+
+                let subtotal = 0;
+                cartItemsContainer.innerHTML = items.map(item => {
+                    const itemTotal = item.price * item.quantity;
+                    subtotal += itemTotal;
+                    return `
+                        <div class="py-4 flex items-center" data-product-id="${item.product_id}">
+                            <img src="${item.image_url}" alt="${item.name}" class="w-20 h-20 object-cover rounded">
+                            <div class="ml-4 flex-grow">
+                                <h3 class="text-lg font-medium text-gray-800">${item.name}</h3>
+                                <p class="text-sm text-gray-600">${item.description}</p>
+                                <div class="mt-2 flex items-center">
+                                    <button class="quantity-btn decrease text-gray-500 hover:text-primary-600">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <span class="mx-2 w-8 text-center">${item.quantity}</span>
+                                    <button class="quantity-btn increase text-gray-500 hover:text-primary-600">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                    <span class="ml-4 text-primary-600 font-medium">৳${item.price}</span>
+                                </div>
+                            </div>
+                            <button class="remove-item text-red-600 hover:text-red-800 ml-4">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    `;
+                }).join('');
+
+                // Update totals
+                const tax = subtotal * 0.05; // 5% tax
+                const shipping = 100; // ৳100 shipping
+                const total = subtotal + tax + shipping;
+
+                subtotalElement.textContent = `৳${subtotal.toFixed(2)}`;
+                taxElement.textContent = `৳${tax.toFixed(2)}`;
+                totalElement.textContent = `৳${total.toFixed(2)}`;
+
+                // Add event listeners
+                addCartItemEventListeners();
+            }
+
+            // Add event listeners to cart items
+            function addCartItemEventListeners() {
+                // Quantity buttons
+                document.querySelectorAll('.quantity-btn').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const item = this.closest('[data-product-id]');
+                        const productId = item.dataset.productId;
+                        const isIncrease = this.classList.contains('increase');
+                        
+                        updateCartItemQuantity(productId, isIncrease);
+                    });
+                });
+
+                // Remove buttons
+                document.querySelectorAll('.remove-item').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const item = this.closest('[data-product-id]');
+                        const productId = item.dataset.productId;
+                        
+                        removeCartItem(productId);
+                    });
+                });
+            }
+
+            // Update cart item quantity
+            function updateCartItemQuantity(productId, isIncrease) {
+                fetch('cart-process.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams({
+                        action: 'update',
+                        product_id: productId,
+                        increase: isIncrease ? '1' : '0'
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        loadCartItems();
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+
+            // Remove cart item
+            function removeCartItem(productId) {
+                fetch('cart-process.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams({
+                        action: 'remove',
+                        product_id: productId
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        loadCartItems();
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+
+            // Clear cart
+            clearCartBtn.addEventListener('click', function() {
+                if (confirm('Are you sure you want to clear your cart?')) {
+                    fetch('cart-process.php?action=clear')
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                loadCartItems();
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                }
+            });
+
+            // Checkout process
+            checkoutBtn.addEventListener('click', function() {
+                // Check if user is logged in
+                fetch('check-login.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (!data.logged_in) {
+                            // Redirect to login page with return URL
+                            window.location.href = 'login.html?redirect=cart.html';
+                            return;
+                        }
+                        
+                        // User is logged in, show shipping form
+                        const shippingForm = document.createElement('div');
+                        shippingForm.className = 'fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center';
+                        shippingForm.innerHTML = `
+                            <div class="bg-white p-6 rounded-lg shadow-xl max-w-md w-full">
+                                <h2 class="text-xl font-semibold mb-4">Shipping Information</h2>
+                                <form id="shipping-form" class="space-y-4">
+                                    <div>
+                                        <label for="phone" class="block text-sm font-medium text-gray-700">Phone Number</label>
+                                        <input type="tel" id="phone" name="phone" required
+                                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500">
+                                    </div>
+                                    <div>
+                                        <label for="shipping_address" class="block text-sm font-medium text-gray-700">Shipping Address</label>
+                                        <textarea id="shipping_address" name="shipping_address" rows="3" required
+                                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"></textarea>
+                                    </div>
+                                    <div>
+                                        <label for="payment_method" class="block text-sm font-medium text-gray-700">Payment Method</label>
+                                        <select id="payment_method" name="payment_method" required
+                                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500">
+                                            <option value="">Select Payment Method</option>
+                                            <option value="Bkash">Bkash</option>
+                                            <option value="Nagad">Nagad</option>
+                                            <option value="Rocket">Rocket</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="transaction_number" class="block text-sm font-medium text-gray-700">Transaction Number</label>
+                                        <input type="text" id="transaction_number" name="transaction_number" required
+                                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500">
+                                    </div>
+                                    <div class="bg-gray-50 p-4 rounded-md">
+                                        <p class="text-sm text-gray-600">Payment Number: 01609168657</p>
+                                        <p class="text-sm text-gray-600 mt-2">Please complete the payment and enter the transaction number above.</p>
+                                    </div>
+                                    <button type="submit"
+                                        class="w-full bg-primary-600 text-white px-4 py-2 rounded hover:bg-primary-700 transition-colors">
+                                        Place Order
+                                    </button>
+                                </form>
+                            </div>
+                        `;
+                        document.body.appendChild(shippingForm);
+
+                        // Handle form submission
+                        document.getElementById('shipping-form').addEventListener('submit', function(e) {
+                            e.preventDefault();
+                            
+                            const formData = new FormData(this);
+                            
+                            fetch('checkout-process.php', {
+                                method: 'POST',
+                                body: formData
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    alert('Order placed successfully!');
+                                    window.location.href = 'customer-dashboard.php';
+                                } else {
+                                    alert(data.message || 'Error placing order');
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                alert('An error occurred while placing the order');
+                            });
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('An error occurred while checking login status');
+                    });
+            });
+
+            // Initial load
+            loadCartItems();
+        });
+    </script>
+</body>
+</html>

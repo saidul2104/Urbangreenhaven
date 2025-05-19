@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Urban Green Haven</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-leaf text-primary-600 text-2xl mr-2"></i>
+                        <span class="font-bold text-xl text-primary-700">Urban Green Haven</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-primary-500 transition-colors">Home</a>
+                    <a href="shop.html" class="text-gray-600 hover:text-primary-500 transition-colors">Shop</a>
+                    <a href="blog.html" class="text-gray-600 hover:text-primary-500 transition-colors">Blog</a>
+                    <a href="qa.html" class="text-gray-600 hover:text-primary-500 transition-colors">Q&A</a>
+                    <a href="consultation.html" class="text-gray-600 hover:text-primary-500 transition-colors">Consultation</a>
+                    <a href="cart.html" class="text-gray-600 hover:text-primary-500 transition-colors relative">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="absolute -top-2 -right-2 bg-primary-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs" id="cart-count">0</span>
+                    </a>
+                    <a href="login.html" class="text-primary-700 font-medium hover:text-primary-500 transition-colors">
+                        <i class="fas fa-user"></i>
+                    </a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-600 hover:text-primary-500 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html" class="block px-3 py-2 text-gray-600 hover:text-primary-500">Home</a>
+                <a href="shop.html" class="block px-3 py-2 text-gray-600 hover:text-primary-500">Shop</a>
+                <a href="blog.html" class="block px-3 py-2 text-gray-600 hover:text-primary-500">Blog</a>
+                <a href="qa.html" class="block px-3 py-2 text-gray-600 hover:text-primary-500">Q&A</a>
+                <a href="consultation.html" class="block px-3 py-2 text-gray-600 hover:text-primary-500">Consultation</a>
+                <a href="cart.html" class="block px-3 py-2 text-gray-600 hover:text-primary-500">Cart</a>
+                <a href="login.html" class="block px-3 py-2 text-primary-700 font-medium">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login/Register Tabs -->
+    <div class="flex-grow flex items-center justify-center px-4 py-12">
+        <div class="max-w-md w-full">
+            <div class="bg-white rounded-t-lg border-b border-gray-200">
+                <div class="flex">
+                    <button id="login-tab" class="tab-button w-1/2 py-4 text-center font-medium text-primary-600 border-b-2 border-primary-600 focus:outline-none">
+                        Login
+                    </button>
+                    <button id="register-tab" class="tab-button w-1/2 py-4 text-center font-medium text-gray-500 hover:text-gray-700 focus:outline-none">
+                        Register
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Login Form -->
+            <div id="login-content" class="bg-white p-8 rounded-b-lg shadow-md">
+                <div class="text-center mb-6">
+                    <i class="fas fa-user-circle text-primary-600 text-5xl mb-2"></i>
+                    <h2 class="text-2xl font-bold text-gray-800">Welcome Back</h2>
+                    <p class="text-gray-600">Sign in to your account</p>
+                </div>
+                
+                <form action="auth/login-process.php" method="POST" class="space-y-4">
+                    <div>
+                        <label for="login-email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                        <input type="email" id="login-email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary-500 focus:border-primary-500">
+                    </div>
+                    
+                    <div>
+                        <label for="login-password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                        <input type="password" id="login-password" name="password" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary-500 focus:border-primary-500">
+                    </div>
+                    
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <input type="checkbox" id="remember-me" name="remember-me" class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded">
+                            <label for="remember-me" class="ml-2 block text-sm text-gray-700">
+                                Remember me
+                            </label>
+                        </div>
+                        <a href="forgot-password.html" class="text-sm text-primary-600 hover:text-primary-500">
+                            Forgot password?
+                        </a>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-300">
+                        Sign In
+                    </button>
+                </form>
+                
+                <div class="mt-6">
+                    <div class="relative">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-gray-300"></div>
+                        </div>
+                        <div class="relative flex justify-center text-sm">
+                            <span class="px-2 bg-white text-gray-500">Or continue with</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 grid grid-cols-2 gap-3">
+                        <a href="#" class="w-full flex items-center justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+                            <i class="fab fa-google text-red-500 mr-2"></i>
+                            Google
+                        </a>
+                        <a href="#" class="w-full flex items-center justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+                            <i class="fab fa-facebook-f text-blue-600 mr-2"></i>
+                            Facebook
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Register Form -->
+            <div id="register-content" class="bg-white p-8 rounded-b-lg shadow-md hidden">
+                <div class="text-center mb-6">
+                    <i class="fas fa-user-plus text-primary-600 text-5xl mb-2"></i>
+                    <h2 class="text-2xl font-bold text-gray-800">Create Account</h2>
+                    <p class="text-gray-600">Join our community of gardeners</p>
+                </div>
+                
+                <form action="auth/register-process.php" method="POST" class="space-y-4">
+                    <div>
+                        <label for="register-name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                        <input type="text" id="register-name" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary-500 focus:border-primary-500">
+                    </div>
+                    
+                    <div>
+                        <label for="register-email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                        <input type="email" id="register-email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary-500 focus:border-primary-500">
+                    </div>
+                    
+                    <div>
+                        <label for="register-phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                        <input type="tel" id="register-phone" name="phone" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary-500 focus:border-primary-500">
+                    </div>
+                    
+                    <div>
+                        <label for="register-password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                        <input type="password" id="register-password" name="password" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary-500 focus:border-primary-500">
+                    </div>
+                    
+                    <div>
+                        <label for="register-confirm-password" class="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
+                        <input type="password" id="register-confirm-password" name="confirm_password" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary-500 focus:border-primary-500">
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <input type="checkbox" id="terms" name="terms" required class="mt-1 h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded">
+                        <label for="terms" class="ml-2 block text-sm text-gray-600">
+                            I agree to the <a href="terms.html" class="text-primary-600 hover:underline">Terms of Service</a> and <a href="privacy.html" class="text-primary-600 hover:underline">Privacy Policy</a>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-300">
+                        Create Account
+                    </button>
+                </form>
+                
+                <div class="mt-6">
+                    <div class="relative">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-gray-300"></div>
+                        </div>
+                        <div class="relative flex justify-center text-sm">
+                            <span class="px-2 bg-white text-gray-500">Or sign up with</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 grid grid-cols-2 gap-3">
+                        <a href="#" class="w-full flex items-center justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+                            <i class="fab fa-google text-red-500 mr-2"></i>
+                            Google
+                        </a>
+                        <a href="#" class="w-full flex items-center justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+                            <i class="fab fa-facebook-f text-blue-600 mr-2"></i>
+                            Facebook
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                    &copy; 2023 Urban Green Haven. All rights reserved.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="privacy.html" class="text-gray-400 hover:text-primary-400 text-sm transition-colors">Privacy Policy</a>
+                    <a href="terms.html" class="text-gray-400 hover:text-primary-400 text-sm transition-colors">Terms of Service</a>
+                    <a href="admin-login.html" class="text-gray-400 hover:text-primary-400 text-sm transition-colors">Admin Panel</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Tab switching
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginTab = document.getElementById('login-tab');
+            const registerTab = document.getElementById('register-tab');
+            const loginContent = document.getElementById('login-content');
+            const registerContent = document.getElementById('register-content');
+        
+            loginTab.addEventListener('click', function() {
+                // Activate login tab
+                loginTab.classList.add('text-primary-600', 'border-b-2', 'border-primary-600');
+                loginTab.classList.remove('text-gray-500', 'hover:text-gray-700');
+            
+                // Deactivate register tab
+                registerTab.classList.remove('text-primary-600', 'border-b-2', 'border-primary-600');
+                registerTab.classList.add('text-gray-500', 'hover:text-gray-700');
+            
+                // Show login content, hide register content
+                loginContent.classList.remove('hidden');
+                registerContent.classList.add('hidden');
+            });
+        
+            registerTab.addEventListener('click', function() {
+                // Activate register tab
+                registerTab.classList.add('text-primary-600', 'border-b-2', 'border-primary-600');
+                registerTab.classList.remove('text-gray-500', 'hover:text-gray-700');
+            
+                // Deactivate login tab
+                loginTab.classList.remove('text-primary-600', 'border-b-2', 'border-primary-600');
+                loginTab.classList.add('text-gray-500', 'hover:text-gray-700');
+            
+                // Show register content, hide login content
+                registerContent.classList.remove('hidden');
+                loginContent.classList.add('hidden');
+            });
+        
+            // Check URL parameters to see if we should show register tab
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('register') === 'true') {
+                registerTab.click();
+            }
+        
+            // Login form submission
+            const loginForm = document.querySelector('form[action="auth/login-process.php"]');
+            if (loginForm) {
+                loginForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                
+                    const formData = new FormData(this);
+                    const redirect = new URLSearchParams(window.location.search).get('redirect') || 'index.html';
+                    formData.append('redirect', redirect);
+                
+                    fetch('auth/login-process.php', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            window.location.href = data.redirect;
+                        } else {
+                            alert(data.message || 'Login failed');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('An error occurred during login');
+                    });
+                });
+            }
+        
+            // Register form submission
+            const registerForm = document.querySelector('form[action="auth/register-process.php"]');
+            if (registerForm) {
+                registerForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                
+                    const formData = new FormData(this);
+                
+                    // Check if passwords match
+                    const password = document.getElementById('register-password').value;
+                    const confirmPassword = document.getElementById('register-confirm-password').value;
+                
+                    if (password !== confirmPassword) {
+                        alert('Passwords do not match.');
+                        return;
+                    }
+                
+                    fetch('auth/register-process.php', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            window.location.href = data.redirect;
+                        } else {
+                            alert(data.message || 'Registration failed. Please try again.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('An error occurred. Please try again.');
+                    });
+                });
+            }
+        
+            // Update cart count
+            fetch('cart-process.php?action=count')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const cartCount = document.getElementById('cart-count');
+                        if (cartCount) {
+                            cartCount.textContent = data.cart_count;
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+</body>
+</html>
